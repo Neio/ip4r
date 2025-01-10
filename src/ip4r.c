@@ -3,7 +3,6 @@
 #include "postgres.h"
 
 #include <math.h>
-#include <sys/socket.h>
 
 #include "fmgr.h"
 #include "funcapi.h"
@@ -1353,14 +1352,14 @@ ip4_in_range_ip4(PG_FUNCTION_ARGS)
 ** GiST support methods
 */
 
-Datum gip4r_consistent(PG_FUNCTION_ARGS);
-Datum gip4r_compress(PG_FUNCTION_ARGS);
-Datum gip4r_decompress(PG_FUNCTION_ARGS);
-Datum gip4r_penalty(PG_FUNCTION_ARGS);
-Datum gip4r_picksplit(PG_FUNCTION_ARGS);
-Datum gip4r_union(PG_FUNCTION_ARGS);
-Datum gip4r_same(PG_FUNCTION_ARGS);
-Datum gip4r_fetch(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_consistent(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_compress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_decompress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_penalty(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_picksplit(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_union(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_same(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip4r_fetch(PG_FUNCTION_ARGS);
 
 static bool gip4r_leaf_consistent(IP4R * key, IP4R * query, StrategyNumber strategy);
 static bool gip4r_internal_consistent(IP4R * key, IP4R * query, StrategyNumber strategy);

@@ -3,7 +3,6 @@
 #include "postgres.h"
 
 #include <math.h>
-#include <sys/socket.h>
 
 #include "fmgr.h"
 #include "funcapi.h"
@@ -1454,14 +1453,14 @@ ip6_in_range_numeric(PG_FUNCTION_ARGS)
 ** GiST support methods
 */
 
-Datum gip6r_consistent(PG_FUNCTION_ARGS);
-Datum gip6r_compress(PG_FUNCTION_ARGS);
-Datum gip6r_decompress(PG_FUNCTION_ARGS);
-Datum gip6r_penalty(PG_FUNCTION_ARGS);
-Datum gip6r_picksplit(PG_FUNCTION_ARGS);
-Datum gip6r_union(PG_FUNCTION_ARGS);
-Datum gip6r_same(PG_FUNCTION_ARGS);
-Datum gip6r_fetch(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_consistent(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_compress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_decompress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_penalty(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_picksplit(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_union(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_same(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gip6r_fetch(PG_FUNCTION_ARGS);
 
 static bool gip6r_leaf_consistent(IP6R * key, IP6R * query, StrategyNumber strategy);
 static bool gip6r_internal_consistent(IP6R * key, IP6R * query, StrategyNumber strategy);

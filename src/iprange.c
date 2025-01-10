@@ -33,8 +33,13 @@
 
 #define XINIT(_i) = _i
 
-static void iprange_internal_error(void) __attribute__((noreturn,noinline));
-static void iprange_af_mismatch(void) __attribute__((noreturn,noinline));
+#ifdef _MSC_VER
+__declspec(noreturn, noinline) static void iprange_internal_error(void);
+__declspec(noreturn, noinline) static void iprange_af_mismatch(void);
+#else
+static void iprange_internal_error(void) __attribute__((noreturn, noinline));
+static void iprange_af_mismatch(void) __attribute__((noreturn, noinline));
+#endif
 
 static
 void iprange_internal_error(void)
@@ -1687,14 +1692,14 @@ iprange_cmp(PG_FUNCTION_ARGS)
 ** GiST support methods
 */
 
-Datum gipr_consistent(PG_FUNCTION_ARGS);
-Datum gipr_compress(PG_FUNCTION_ARGS);
-Datum gipr_decompress(PG_FUNCTION_ARGS);
-Datum gipr_penalty(PG_FUNCTION_ARGS);
-Datum gipr_picksplit(PG_FUNCTION_ARGS);
-Datum gipr_union(PG_FUNCTION_ARGS);
-Datum gipr_same(PG_FUNCTION_ARGS);
-Datum gipr_fetch(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_consistent(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_compress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_decompress(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_penalty(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_picksplit(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_union(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_same(PG_FUNCTION_ARGS);
+PGDLLEXPORT Datum gipr_fetch(PG_FUNCTION_ARGS);
 
 typedef struct {
 	int32 vl_len_;
