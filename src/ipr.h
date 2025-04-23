@@ -25,6 +25,16 @@
 #define PGDLLEXPORT
 #endif
 
+#ifdef _MSC_VER
+#include <intrin.h>
+inline int ffs(long x)
+{
+	long pos;
+	char r = _BitScanForward(&pos, x);
+	return pos + 1;
+}
+#endif
+
 PGDLLEXPORT bool ip4_raw_input(const char *src, uint32 *dst);
 PGDLLEXPORT bool ip6_raw_input(const char *src, uint64 *dst);
 PGDLLEXPORT int ip4_raw_output(uint32 ip, char *str, int len);
@@ -80,7 +90,13 @@ typedef union IP {
 
 typedef void *IP_P;	 /* unaligned! */
 
+
+
+#ifdef _MSC_VER
+__declspec(noreturn, noinline) void ipaddr_internal_error(void);
+#else
 PGDLLEXPORT void ipaddr_internal_error(void) __attribute__((noreturn));
+#endif
 
 static inline
 int ip_unpack(IP_P in, IP *out)
